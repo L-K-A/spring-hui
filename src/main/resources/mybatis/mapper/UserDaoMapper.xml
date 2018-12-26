@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxq.dao.UserDao">
+    <select id="getUserLogin" parameterType="User" resultType="User">
+        select  pid,personname,personpwd,personage,persontel,createdate,flate
+        from h_person
+        where personname=#{personname} and  personpwd=#{personpwd}
+    </select>
+
+<select id="getUserList" parameterType="map" resultType="map">
+    select pid,personname,persontel,personage,flate
+    from h_person
+    order by pid desc
+</select>
+    <select id="getUserCount" parameterType="map" resultType="int">
+        select count(*)
+        from h_person
+
+    </select>
+    <delete id="getUserDelete" parameterType="int">
+        delete from h_person where pid=#{pid}
+    </delete>
+    <select id="getAdminInfo" parameterType="int" resultType="User">
+        select pid,personname,personpwd,personage,persontel,createdate,flate
+        from h_person
+        where pid=#{pid}
+    </select>
+</mapper>
